@@ -1,2 +1,2 @@
 
-PythonStudy is a set of example of Python language.
+PythonStudy is a set of examples of Python language.
