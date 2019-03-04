@@ -1,0 +1,17 @@
+我们可以利用修改~/.bashrc 来达到目的。在shell启动的时候会读取 ~/.bashrc文件，你可以在这个文件里指定一些自己常用的命令。首先确认自己已经下载了python3.x版本，最新的已经3.5以上了。然后在终端输入python
+按tab键不要按回车，此时会有提示各种和python有关的信息，找到最新的python版本号，比如python3.5。然后
+
+终端运行 open ~/.bashrc
+来打开 .bashrc文件在文件中添加
+alias python="python3.5"
+alias pip ="/Library/Frameworks/Python.framework/Versions/3.7/bin/pip"
+
+
+
+这句话的意思就是 让python与phthon3.5等价，所以你每次在shell中输入python也就相当于输入了phthon3.5了然后重新打开终端，此时运行 phthon
+
+
+作者：Alex Liu
+链接：https://www.zhihu.com/question/30941329/answer/92478971
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
