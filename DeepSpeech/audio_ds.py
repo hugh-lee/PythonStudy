@@ -10,11 +10,6 @@ import sys
 import wave
 import _thread
 
-from flask import Flask
-from flask import render_template
-from flask import request
-from werkzeug.utils import secure_filename
-
 
 from deepspeech import Model, printVersions
 from timeit import default_timer as timer
@@ -86,8 +81,11 @@ def init_ds():
         print('Loaded language model in {:.3}s.'.format(lm_load_end), file=sys.stderr)
         return ds
 
-    
-def inference(ds, audio):
+
+ds = init_ds()
+
+
+def inference(audio):
     fin = wave.open(audio, 'rb')
     fs = fin.getframerate()
     if fs != 16000:
@@ -107,11 +105,8 @@ def inference(ds, audio):
     print('Inference took %0.3fs for %0.3fs audio file.' % (inference_end, audio_length), file=sys.stderr)
     return result
 
-ds = init_ds()
-ds1 = init_ds()
-ds2 = init_ds()
-ds3 = init_ds()
-ds4 = init_ds()
+
+
 
 
 app = Flask(__name__)
