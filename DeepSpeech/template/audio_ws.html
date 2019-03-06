@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Live input record and playback</title>
+    <style type='text/css'>
+ul {
+	list-style: none;
+}
+    </style>
+
+    <script src="{{ static_url('js/jquery-1.11.0.min.js')}}"></script>
+    <script src="{{ static_url('js/audio_ws.js')}}"></script>
+    <script src="{{ static_url('js/speech-recognition.js')}}"></script>
+</head>
+<body>
+<div>
+    <br/>
+    <div style="background-color: #CFD9E7;">
+        <div style="float: left; margin-left: 10px;margin-top: 10px">
+            <label>Please Select Appid: </label>
+            <span style='margin-left: 20px;'></span>
+            <select id="appid" style="font-size: 16px">
+                <option value="default-engine">default-engine</option>
+                <option value="NUMBER-engine">NUMBER-engine</option>
+                <option value="TN-engine">TN-engine</option>
+                <option value="DATE-engine">DATE-engine</option>
+                <option value="FIRST_NAME-engine">FIRST_NAME-engine</option>
+                <option value="INET_DOMAIN-engine">INET_DOMAIN-engine</option>
+                <option value="LAST_NAME-engine">LAST_NAME-engine</option>
+                <option value="MI-engine">MI-engine</option>
+                <option value="MONEY-engine">MONEY-engine</option>
+                <option value="NAME-engine">NAME-engine</option>
+                <option value="PERCENT-engine">PERCENT-engine</option>
+                <option value="SSN-engine">SSN-engine</option>
+                <option value="SSN4-engine">SSN4-engine</option>
+                <option value="STATE-engine">STATE-engine</option>
+                <option value="STRING-engine">STRING-engine</option>
+                <option value="TN2-engine">TN2-engine</option>
+                <option value="YESNO-engine">YESNO-engine</option>
+                <option value="ZIP_CODE-engine">ZIP_CODE-engine</option>
+                <option value="freeswitch-test">freeswitch-test</option>
+                <option value="icas">icas</option>
+                <option value="onboard_enroll">onboard_enroll</option>
+                <option value="charlie" selected="selected">charlie</option>
+                <option value="google-sr">google-sr</option>
+                <option value="google-sr-rpc">google-sr-rpc</option>
+            </select>
+            <span style='margin-left: 20px;'></span>
+        </div>
+        <div style="float: left; margin-left: 10px;margin-top: 10px">
+            <input type="checkbox" id="isUsingVad" value="" checked="true">useRecogVAD<br/>
+        </div>
+        <div style="float: left; margin-left: 10px;margin-top: 10px">
+            <input type="checkbox" id="enableInterimResult" value="" checked="true">enableInterimResult<br/>
+        </div>
+        <div style="float: left; margin-left: 10px;margin-top: 10px;display:none">
+            <input type="checkbox" id="singleUtterance" value="" disabled="true">singleUtterance<br/>
+        </div>
+        <div style="clear: both;"></div>
+        <div style="margin: 5px;">
+            <div id="socketStatus" style="padding-bottom: 15px;"></div>
+        </div>
+    </div>
+    <br/>
+    <div>
+        <div id="btnsDiv" style="display: none">
+            <button id="startBtn" style="margin-right: 15px;width: 60px;height: 30px;" onclick="startRecording(this);">
+                Start
+            </button>
+            <button id="stopBtn" style="margin-right: 15px;width: 60px;height: 30px;" onclick="stopRecording(this);"
+                    disabled>Stop
+            </button>
+            <textarea style="vertical-align: bottom;width: 300px;" id="chat-input"></textarea>
+        </div>
+        <br/>
+        <div id="recordingslist"></div>
+    </div>
+    <pre id="log"></pre>
+</div>
+
+
+<script>
+		var audio_context;
+		var recorder;
+		var ws;
+		var startTime, endTime;
+		var testModelName = $("#appid").val();
+		
+		window.onload = function init() {
+			try {
+				// webkit shim
+				window.AudioContext = window.AudioContext || window.webkitAudioContext;
+				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+				window.URL = window.URL || window.webkitURL;
+
+				audio_context = new AudioContext;
+				__log('Audio context set up.');
+				__log('navigator.getUserMedia' + (navigator.getUserMedia ? ' available.' : ' not present!'));
+			} catch (e) {
+				alert('No web audio support in this browser!');
+			}
+
+			$("#appid").change(function(event){
+				testModelName=$("#appid").val();				 
+			});
+			
+
+			navigator.mediaDevices.getUserMedia({audio : true})
+			.then(function(stream) {
+			  /* use the stream */
+				startUserMedia(stream);
+			})
+			.catch(function(err) {
+				__log('No live audio input: ' + e);
+			});
+	
+			/*
+			 ****** use speech-recognitopn.js to connect google SR... ****************
+			 */
+			var callback = {
+					onOpen : function(d) {	 
+						$('#socketStatus').html("WebSocket Connected...sid=" + sid ).css("color", "green");		
+						//start btn enable
+						$('#btnsDiv').css("display", "block");
+					},
+					onError : function(d) {
+						$('#socketStatus').html('WebSocket Error: sid=' + sid).css("color", "red");
+					},
+					onClose : function(d) {
+						$('#socketStatus').html('WebSocket Closed: sid=' + sid + " " + d).css("color", "red");		
+					},
+					onTranscriptionUpdate: function(d) {
+						__log("Received tag: " + JSON.stringify(d));
+						var responseJson = d;
+						var result = "";
+						if(responseJson.result)
+						{
+							result = responseJson.result;
+						}
+						$('#chat-input').val(result);
+						var usetime = responseJson.total_time;
+						endTime = new Date();	
+						var  outputstr = "<strong>transcript[" + usetime + "ms / " + (endTime.getTime() - startTime.getTime()) + "ms]:  " + result + "</strong>";
+						__log(outputstr);
+					},					
+					onResponse : function(d) {
+						__log("Received tag: " + JSON.stringify(d));	
+						endTime = new Date();		 
+						var responseJson = d;
+						var result = "";
+						if(responseJson.result)
+						{
+							result = responseJson.result;
+						}
+						$('#chat-input').val(result);
+						
+						var usetime = responseJson.total_time;
+						var recognize_status = responseJson.recognize_status;
+						if(responseJson.filename)
+						{ 
+							var filename = responseJson.filename;
+							var recog_modelname = responseJson.modelid;
+							var url="audio_download?modelname=" + testModelName + "&recog_modelname=" + recog_modelname + "&filename=" + filename;
+							if((filename.indexOf("http://")) || (filename.indexOf("https://")))
+							{
+								url = filename;
+						    }
+							
+						 	//var newfileName = new Date().toISOString()	+ '.wav';		
+						    recordingslist.innerHTML = "<audio controls='' src='" + url +"'></audio><a href='"+ url +"' download='" + url +"'>wav</a>";
+					     }	
+
+		                var  outputstr = "<strong>transcript[" + usetime + "ms / " + (endTime.getTime() - startTime.getTime()) + "ms]:  " + result + "</strong>";
+					    if(recognize_status == "end")
+						{
+					         outputstr = "<strong>transcript[" + usetime + "ms / " + (endTime.getTime() - startTime.getTime()) + "ms][" + recognize_status +"]:  " + result + "</strong>";
+						}			     
+						__log(outputstr);
+
+						//enable startbtn...
+		                if("end" == recognize_status)
+		                {
+		                	asyncStop();
+		                	//button.previousElementSibling.disabled = false;
+		                	//$('#startBtn').attr('disabled',"true");
+		                	$('#startBtn').removeAttr("disabled")
+		                	$('#stopBtn').attr('disabled',"true");
+		                }
+					}
+				};
+			
+			//connect websocket url..
+			var sid = "www" + guid();
+			var wsurl = window.location.hostname + ":" + window.location.port + "/co-speech/ws/"+ sid;
+			if(window.location.protocol == "https:")
+			{
+				wsurl = "wss://" + wsurl;
+			}
+			else
+			{
+				wsurl = "ws://" + wsurl;
+			}			
+			
+			ws = new CoSpeechRecognition(callback);	
+			ws.connect(wsurl);			
+			$('#socketStatus').html('It is connecting WebSocket Server, please warting...' );				
+		};
+		 
+
+		function startUserMedia(stream) {
+			var input = audio_context.createMediaStreamSource(stream);
+			__log('Media stream created.');
+
+			recorder = new Recorder(input);
+			__log('Recorder initialised.');		
+		}
+
+		function startRecording(button) {
+			 
+			recorder && recorder.record();
+			button.disabled = true;
+			button.nextElementSibling.disabled = false;
+			
+			var isUsingVad = "false"; 
+			if(document.getElementById("isUsingVad").checked)
+			{
+				isUsingVad = "true"; 
+			}	
+			var enableInterimResult = "false"; 
+			if(document.getElementById("enableInterimResult").checked)
+			{
+				enableInterimResult = "true"; 
+			}	
+ 		 
+			var audioFrameLength="1000";	 			
+			var sid = "mytest";
+			var qid="xxx";
+			var qtype="";//option
+			var reqParams = {"appName":testModelName,"sid":sid, "qid":sid, "isUsingVad": isUsingVad,"recogNoInputTimeout": 30000, "enableInterimResult":enableInterimResult};
+			__log('Send tag: ' + JSON.stringify(reqParams));
+			ws.start(reqParams);
+		 
+
+			__log('Recording...');
+			startTime = new Date();
+
+			// Start recording
+			intervalKey = setInterval(sendAudioUseWebsocket, 1000);	
+			recordingslist.innerHTML = "";	 
+		}
+
+		function stopRecording(button) {
+			
+			// Stop the regular sending of audio		
+			clearInterval(intervalKey);	
+			
+			//setTimeout("fun()",2000)
+			
+			//sendAudioUseWebsocket();			
+			recorder.export8kRaw(function(blob) {
+				sendBinary(blob);
+				recorder.clear();				
+				//end...	
+				var reqParams = {"appName":testModelName};
+				__log('Send tag: ' + JSON.stringify(reqParams));
+				ws.stop(reqParams);						
+				
+				
+				button.disabled = true;
+				//button.previousElementSibling.disabled = false;
+				__log('Stopped recording. it is recognizing...');
+
+				endTime = new Date();
+
+				if (recorder) 
+				{
+					recorder.stop();
+					recorder.clear();
+				}	
+				 
+			}, 'audio/x-raw');	 
+		}
+
+	    function asyncStop() {
+			
+			// Stop the regular sending of audio		
+			clearInterval(intervalKey);	
+		 
+			recorder.clear();					 
+			 
+			__log('Notify to Stop recording.');
+
+			endTime = new Date();
+
+			if (recorder) 
+			{
+				recorder.stop();
+				recorder.clear();
+			}				 
+		}
+
+
+		function sendAudioUseWebsocket()	{
+			recorder.export8kRaw(function(blob) {
+				sendBinary(blob);
+				recorder.clear();
+			}, 'audio/x-raw');
+		}	
+		
+		function sendBinary(item) {			 
+			ws.sendBinary(item);
+			__log('Send to server: blob: ' + item.type + ', ' + item.size);						 
+		}
+		
+
+		function guid() {
+		    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+		        return v.toString(16);
+		    });
+		}
+		 
+		
+		function __log(e, data) {
+			var today = new Date()
+			var h = today.getHours()
+			var m = today.getMinutes()
+			var s = today.getSeconds()
+			var ms = today.getMilliseconds()
+			log.innerHTML = h + ":" + m + ":" + s + "." + ms + " - " + e + " " + (data || '') + "\n" + log.innerHTML;
+		}
+
+</script>
+</body>
+</html>

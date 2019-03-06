@@ -35,26 +35,7 @@ class SocketHandler(websocket.WebSocketHandler):
 class IndexHandler(web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
-        self.render("websocket.html", title="My title", items=[])
-
-class AudioHandler(web.RequestHandler):
-    def get(self):
         self.render("audio_ws.html", title="My title", items=[])
-
-class ApiHandler(web.RequestHandler):
-    @web.asynchronous
-    def get(self, *args):
-        self.finish()
-        id = self.get_argument("id")
-        value = self.get_argument("value")
-        data = {"id": id, "value": value}
-        data = json.dumps(data)
-        for c in cl:
-            c.write_message(data)
-
-    @web.asynchronous
-    def post(self):
-        pass
 
 
 class StopHandler(web.RequestHandler):
@@ -64,9 +45,7 @@ class StopHandler(web.RequestHandler):
 
 app = web.Application([
     (r'/', IndexHandler),
-    (r'/audio', AudioHandler),
     (r'/ws', SocketHandler),
-    (r'/api', ApiHandler),
     (r'/stop', StopHandler),
     (r'/(favicon.ico)', web.StaticFileHandler, {'path': '../'}),
     (r'/(rest_api_example.png)', web.StaticFileHandler, {'path': './'}),
