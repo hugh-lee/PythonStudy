@@ -4,7 +4,7 @@ import json
 import os
 import wave
 import time
-import audio_ds
+#import audio_ds
 
 cl = []
 
@@ -103,8 +103,9 @@ class SocketHandler(websocket.WebSocketHandler):
             elif action == 'end':
                 self.audio_handler.end_record()
                 timestamp = time.time()
-                result = audio_ds.inference('test.wav')
-                self.write_message('result: [' + time.time() - timestamp + ']' + result)
+                #result = audio_ds.inference('test.wav')
+                result=''
+                self.write_message('result: [' + str(time.time() - timestamp) + ']' + result)
         elif isinstance(message, bytes):
             self.audio_handler.write(message)
         else:
