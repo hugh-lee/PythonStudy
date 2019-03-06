@@ -8,6 +8,7 @@
 ul {
 	list-style: none;
 }
+
     </style>
 
     <script src="{{ static_url('js/jquery-1.11.0.min.js')}}"></script>
@@ -23,29 +24,6 @@ ul {
             <span style='margin-left: 20px;'></span>
             <select id="appid" style="font-size: 16px">
                 <option value="default-engine">default-engine</option>
-                <option value="NUMBER-engine">NUMBER-engine</option>
-                <option value="TN-engine">TN-engine</option>
-                <option value="DATE-engine">DATE-engine</option>
-                <option value="FIRST_NAME-engine">FIRST_NAME-engine</option>
-                <option value="INET_DOMAIN-engine">INET_DOMAIN-engine</option>
-                <option value="LAST_NAME-engine">LAST_NAME-engine</option>
-                <option value="MI-engine">MI-engine</option>
-                <option value="MONEY-engine">MONEY-engine</option>
-                <option value="NAME-engine">NAME-engine</option>
-                <option value="PERCENT-engine">PERCENT-engine</option>
-                <option value="SSN-engine">SSN-engine</option>
-                <option value="SSN4-engine">SSN4-engine</option>
-                <option value="STATE-engine">STATE-engine</option>
-                <option value="STRING-engine">STRING-engine</option>
-                <option value="TN2-engine">TN2-engine</option>
-                <option value="YESNO-engine">YESNO-engine</option>
-                <option value="ZIP_CODE-engine">ZIP_CODE-engine</option>
-                <option value="freeswitch-test">freeswitch-test</option>
-                <option value="icas">icas</option>
-                <option value="onboard_enroll">onboard_enroll</option>
-                <option value="charlie" selected="selected">charlie</option>
-                <option value="google-sr">google-sr</option>
-                <option value="google-sr-rpc">google-sr-rpc</option>
             </select>
             <span style='margin-left: 20px;'></span>
         </div>
@@ -125,17 +103,23 @@ ul {
 						//start btn enable
 						$('#btnsDiv').css("display", "block");
 					},
+					onMessage: function(d) {
+						__log(d);
+					},
 					onError : function(d) {
-						$('#socketStatus').html('WebSocket Error: sid=' + sid).css("color", "red");
+						$('#socketStatus').html('WebSocket Error: sid=' + sid + ':' + d).css("color", "red");
 					},
 					onClose : function(d) {
 						$('#socketStatus').html('WebSocket Closed: sid=' + sid + " " + d).css("color", "red");		
 					},
 					onTranscriptionUpdate: function(d) {
 						__log("Received tag: " + JSON.stringify(d));
+						if(!responseJson)
+						    return;
+
 						var responseJson = d;
 						var result = "";
-						if(responseJson.result)
+						if(responseJson && responseJson.result)
 						{
 							result = responseJson.result;
 						}
@@ -192,8 +176,8 @@ ul {
 				};
 			
 			//connect websocket url..
-			var sid = "www" + guid();
-			var wsurl = window.location.hostname + ":" + window.location.port + "/co-speech/ws/"+ sid;
+			var sid = "www-" + guid();
+			var wsurl = window.location.hostname + ":" + window.location.port + "/ws/"+ sid;
 			if(window.location.protocol == "https:")
 			{
 				wsurl = "wss://" + wsurl;
@@ -214,11 +198,10 @@ ul {
 			__log('Media stream created.');
 
 			recorder = new Recorder(input);
-			__log('Recorder initialised.');		
+			__log('Recorder initialized.');
 		}
 
 		function startRecording(button) {
-			 
 			recorder && recorder.record();
 			button.disabled = true;
 			button.nextElementSibling.disabled = false;
@@ -241,7 +224,6 @@ ul {
 			var reqParams = {"appName":testModelName,"sid":sid, "qid":sid, "isUsingVad": isUsingVad,"recogNoInputTimeout": 30000, "enableInterimResult":enableInterimResult};
 			__log('Send tag: ' + JSON.stringify(reqParams));
 			ws.start(reqParams);
-		 
 
 			__log('Recording...');
 			startTime = new Date();
@@ -252,8 +234,7 @@ ul {
 		}
 
 		function stopRecording(button) {
-			
-			// Stop the regular sending of audio		
+			// Stop the regular sending of audio
 			clearInterval(intervalKey);	
 			
 			//setTimeout("fun()",2000)
@@ -267,15 +248,15 @@ ul {
 				__log('Send tag: ' + JSON.stringify(reqParams));
 				ws.stop(reqParams);						
 				
-				
+				$('#startBtn').removeAttr("disabled");
+
 				button.disabled = true;
 				//button.previousElementSibling.disabled = false;
 				__log('Stopped recording. it is recognizing...');
 
 				endTime = new Date();
 
-				if (recorder) 
-				{
+				if (recorder) {
 					recorder.stop();
 					recorder.clear();
 				}	
@@ -294,8 +275,7 @@ ul {
 
 			endTime = new Date();
 
-			if (recorder) 
-			{
+			if (recorder)  {
 				recorder.stop();
 				recorder.clear();
 			}				 
@@ -331,7 +311,6 @@ ul {
 			var ms = today.getMilliseconds()
 			log.innerHTML = h + ":" + m + ":" + s + "." + ms + " - " + e + " " + (data || '') + "\n" + log.innerHTML;
 		}
-
 </script>
 </body>
 </html>

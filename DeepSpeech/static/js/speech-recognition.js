@@ -33,8 +33,6 @@
 		} else if ('MozWebSocket' in window) {
 			this.ws = new MozWebSocket(wsurl);
 		} else {
-			// Console.log('Error: WebSocket is not supported by this
-			// browser.');
 			alert('Error: WebSocket is not supported by this browser.');
 			return;
 		}		 
@@ -47,27 +45,26 @@
 		};
 		this.ws.onmessage = function(evt) {
 			var received_msg = null; 
-			try
-			{
-				//{"sid":"wwwbdc8e2621d714a198749e2d92e34132d","modelid":"google-rpc-async","total_time":"9194","result":["use","use one"], "is_final":"true","recognize_status":"end","filename":"D20190122201443245-3.wav"}
-			   //received_msg = JSON.parse(evt.data);
-			   received_msg = eval("(" + evt.data + ")");			   
+			try {
+			    //{"sid":"wwwbdc8e2621d714a198749e2d92e34132d","modelid":"google-rpc-async","total_time":"9194","result":["use","use one"], "is_final":"true","recognize_status":"end","filename":"D20190122201443245-3.wav"}
+			    //received_msg = JSON.parse(evt.data);
+			    //received_msg = eval("(" + evt.data + ")");
+			    _this.callback.onMessage(evt.data)
 			}
-			catch(ex)
-			{				 
+			catch(ex) {
 				if (_this.callback.hasOwnProperty("onError")) {				 
 					_this.callback.onError(event.data);
 				}
 				return;
 			}
 			
-			var is_final_result = (("true" == received_msg.is_final) || false);
-			var is_end = (("true" == received_msg.recognize_status) || false);
-			if ((is_final_result || is_end) && _this.callback.hasOwnProperty("onResponse")) {
-				_this.callback.onResponse(received_msg);
-			} else if ((!is_final_result) && _this.callback.hasOwnProperty("onTranscriptionUpdate")) {
-				_this.callback.onTranscriptionUpdate(received_msg);
-			}  		
+//			var is_final_result = ((received_msg && "true" == received_msg.is_final) || false);
+//			var is_end = ((received_msg && "true" == received_msg.recognize_status) || false);
+//			if ((is_final_result || is_end) && _this.callback.hasOwnProperty("onResponse")) {
+//				_this.callback.onResponse(received_msg);
+//			} else if ((!is_final_result) && _this.callback.hasOwnProperty("onTranscriptionUpdate")) {
+//				_this.callback.onTranscriptionUpdate(received_msg);
+//			}
 		};
 		this.ws.onerror = function(event) {			 
 			//alert("connect error...");
