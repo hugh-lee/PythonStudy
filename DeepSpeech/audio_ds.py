@@ -62,10 +62,11 @@ class VersionAction(argparse.Action):
         exit(0)
 
 def init_ds():
-    model='models/output_graph.pbmm'
-    alphabet='models/alphabet.txt'
-    lm='models/lm.binary'
-    trie='models/trie'
+    base = '/Users/lihu/Documents/Projects/DeepSpeech/'
+    model = base + 'models/output_graph.pbmm'
+    alphabet=base + 'models/alphabet.txt'
+    lm=base +'models/lm.binary'
+    trie=base + 'models/trie'
 
     print('Loading model from file {}'.format(model), file=sys.stderr)
     model_load_start = timer()
@@ -107,35 +108,6 @@ def inference(audio):
 
 
 
-
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello World!'
-
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        f = request.files['file']
-        filename = secure_filename(f.filename) + '___'
-        print(filename)   
-        f.save(filename)
-        result = inference(ds,filename)
-        _thread.start_new_thread( inference, (ds1,filename,) )
-        _thread.start_new_thread( inference, (ds2, 'nan_nope.wav',) )
-        _thread.start_new_thread( inference, (ds3, '421330421.wav',) )
-        _thread.start_new_thread( inference, (ds4, filename,) )
-        return result
-
-    return ''' <!doctype html> <title>Upload new File</title> <h1>Upload new File</h1> <form action="" method=post enctype=multipart/form-data>   <p><input type=file name=file>      <input type=submit value=Upload> </form> '''
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 
 

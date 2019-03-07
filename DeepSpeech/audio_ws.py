@@ -1,9 +1,11 @@
-from tornado import websocket, web, ioloop
+
+from tornado import websocket, web, ioloop, httpserver
 from abc import ABCMeta, abstractmethod
 import json
 import os
 import wave
 import time
+import ssl
 #import audio_ds
 
 cl = []
@@ -135,6 +137,14 @@ app = web.Application([
 ], **setting, debug=True)
 
 if __name__ == "__main__":
-    app.listen(8888)
+    http_server = httpserver.HTTPServer(app, ssl_options={
+        "certfile": os.path.join(os.path.dirname(os.path.realpath(__file__)), "ssh/CyberObject.csr"),
+        "keyfile": os.path.join(os.path.dirname(os.path.realpath(__file__)), "ssh/CyberObject.key"),
+    })
+    http_server.listen(4443)
+
     print("App start...")
-    ioloop.IOLoop.current().start()
+    ioloop.IOLoop.instance().start()
+
+    # app.listen(8888)
+    # ioloop.IOLoop.current().start()
