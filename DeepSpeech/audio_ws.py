@@ -5,8 +5,7 @@ import json
 import os
 import wave
 import time
-import ssl
-#import audio_ds
+import audio_ds
 
 cl = []
 
@@ -105,8 +104,8 @@ class SocketHandler(websocket.WebSocketHandler):
             elif action == 'end':
                 self.audio_handler.end_record()
                 timestamp = time.time()
-                #result = audio_ds.inference('test.wav')
                 result=''
+                result = audio_ds.inference('test.wav')
                 self.write_message('result: [' + str(time.time() - timestamp) + ']' + result)
         elif isinstance(message, bytes):
             self.audio_handler.write(message)
@@ -137,11 +136,11 @@ application = web.Application([
 
 if __name__ == "__main__":
     http_server = httpserver.HTTPServer(application, ssl_options={
-        "certfile": os.path.join(os.path.abspath("."), "ssh/server.crt"),
-        "keyfile": os.path.join(os.path.abspath("."), "ssh/server.key"),
+        "certfile": os.path.join(os.path.abspath("."), "ssh/lihu_win_server.crt"),
+        "keyfile": os.path.join(os.path.abspath("."), "ssh/lihu_win_server.key"),
     })
 
     print("App start...")
 
-    http_server.listen(443)
+    http_server.listen(8000)
     ioloop.IOLoop.instance().start()
