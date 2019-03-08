@@ -142,11 +142,6 @@ if __name__ == "__main__":
     })
 
     print("App start...")
-    #http_server.listen(8000)
-    #ioloop.IOLoop.instance().start()
 
     http_server.listen(443)
     ioloop.IOLoop.instance().start()
-
-    # app.listen(8888)
-    # ioloop.IOLoop.current().start()
