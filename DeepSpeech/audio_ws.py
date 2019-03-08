@@ -130,20 +130,22 @@ class StopHandler(web.RequestHandler):
         ioloop.IOLoop.instance().stop()
 
 
-app = web.Application([
+application = web.Application([
     (r'/', IndexHandler),
     (r'/ws/(.*)', SocketHandler),
-    (r'/stop', StopHandler),
-], **setting, debug=True)
+    (r'/stop', StopHandler),], **setting, debug=True)
 
 if __name__ == "__main__":
-    http_server = httpserver.HTTPServer(app, ssl_options={
-        "certfile": os.path.join(os.path.dirname(os.path.realpath(__file__)), "ssh/CyberObject.csr"),
-        "keyfile": os.path.join(os.path.dirname(os.path.realpath(__file__)), "ssh/CyberObject.key"),
+    http_server = httpserver.HTTPServer(application, ssl_options={
+        "certfile": os.path.join(os.path.abspath("."), "ssh/server.crt"),
+        "keyfile": os.path.join(os.path.abspath("."), "ssh/server.key"),
     })
-    http_server.listen(4443)
 
     print("App start...")
+    #http_server.listen(8000)
+    #ioloop.IOLoop.instance().start()
+
+    http_server.listen(443)
     ioloop.IOLoop.instance().start()
 
     # app.listen(8888)
