@@ -1,0 +1,111 @@
+wav_filename,wav_filesize,transcript
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/operator_escape.wav,62924,operator escape
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/there_are_second_dial_tones_heard_occasionally.wav,98444,there are second dial tones heard occasionally
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/the_hunting_number_is_not_my_phone_number.wav,97484,the hunting number is not my phone number
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/password_problems.wav,83564,password problems
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/go_into_voice_mail_directly.wav,93164,go into voice mail directly
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/cable_down.wav,73964,cable down
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/not_hearing_second_dial_tone.wav,90284,not hearing second dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_phone_does_not_have_the_second_dial_tone.wav,88364,my phone does not have the second dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/pager_notification.wav,68684,pager notification
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_am_hearing_a_fast_busy_signal_on_my_line.wav,106124,i am hearing a fast busy signal on my line
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/do_not_have_a_second_dial_tone.wav,85004,do not have a second dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_wants_other_information.wav,104684,customer wants other information
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/only_has_one_not_all.wav,95564,only has one not all
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_will_check_the_nid_further.wav,84524,i will check the nid further
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_call_forward_variable_has_problems.wav,111884,my call forward variable has problems
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_have_a_complaint.wav,83564,i have a complaint
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_cannot_receive_any_calls.wav,88844,i cannot receive any calls
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_need_the_dispatch.wav,68204,i need the dispatch
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_call_forward_variable_is_not_working.wav,118604,my call forward variable is not working
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/bell_rings_one_time.wav,86444,bell rings one time
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_is_not_able_to_hear_name.wav,92684,customer is not able to hear name
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_data_is_garbled.wav,80204,my data is garbled
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_do_not_have_a_second_tone.wav,76364,i do not have a second tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_reporting_data_only_trouble.wav,104684,customer reporting data only trouble
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/no_dial_tone_at_times.wav,78284,no dial tone at times
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/get_generic_greeting.wav,86924,get generic greeting
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_to_voice_message.wav,76364,call to voice message
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/nobody_can_dial_in.wav,102764,nobody can dial in
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_hope_to_dispatch_when_i_checked_equipment.wav,112844,i hope to dispatch when i checked equipment
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/bell_rings_after_answer.wav,95084,bell rings after answer
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_deactivate.wav,71084,can't deactivate
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/further_isolation_needed.wav,85484,further isolation needed
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/slow_dial_tone.wav,94604,slow dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_have_no_dial_tone.wav,79244,i have no dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_hear_noise.wav,73484,i hear noise
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/the_call_is_a_local_call_not_long_distance.wav,136844,the call is a local call not long distance
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_dial_tone_is_broken.wav,80204,my dial tone is broken
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can_you_transfer_me_to_an_agent.wav,101324,can you transfer me to an agent
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_want_to_remove_feature.wav,76364,i want to remove feature
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/buried_drop_needs_cutover.wav,130604,buried drop needs cutover
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_from_other_number.wav,74924,call from other number
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_wants_more_education_for_it.wav,96044,customer wants more education for it
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/cable_low.wav,70124,cable low
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_forward_busy_line.wav,66764,call forward busy line
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_am_unable_to_send_data.wav,83564,i am unable to send data
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/I_am_not_hearing_dial_tone.wav,101324,i am not hearing dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_cable_is_broken.wav,79244,my cable is broken
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/power_line_on_cable.wav,83564,power line on cable
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/the_phone_has_noises.wav,80684,the phone has noises
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/line_is_busy.wav,62444,line is busy
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/all_my_phones_with_all_calls .wav,75830,all my phones with all calls 
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/a_cable_is_moved_in_my_yard.wav,103724,a cable is moved in my yard
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_hear_buzzing.wav,73484,i hear buzzing
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_can't_remove_messages.wav,85484,i can't remove messages
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/bell_sounds_unexpected_ringing.wav,97964,bell sounds unexpected ringing
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_will_check_further_for_nid.wav,104204,customer will check further for nid
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_call_eight_one_one.wav,84044,can't call eight one one
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_hear_silence_on_my_phone.wav,152684,i hear silence on my phone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_hear_a_buzz.wav,87404,i hear a buzz
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/ring_cycle_change.wav,83564,ring cycle change
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_couldn't_receive_messages.wav,91244,i couldn't receive messages
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/all_phones_and_all_calls.wav,85484,all phones and all calls
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/close_my_reported_trouble.wav,91724,close my reported trouble
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/bell_doesn't_ring.wav,71084,bell doesn't ring
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/purchase_suppressor.wav,72524,purchase suppressor
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_phone_is_completely_dead.wav,89804,my phone is completely dead
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/please_transfer.wav,78764,please transfer
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_reporting_voice_only_trouble.wav,133964,customer reporting voice only trouble
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_wants_per_line_blocking.wav,105644,customer wants per line blocking
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_want_to_cancel_the_report_after_checked_equipment.wav,123884,i want to cancel the report after checked equipment
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_call_out.wav,78284,can't call out
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/isolate_c._p._e._trouble.wav,79244,isolate c  p  e  trouble
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_busy_when_dialing.wav,75884,call busy when dialing
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_have_dial_tone_issues.wav,84524,i have dial tone issues
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/only_has_one_phone_and_all_calls.wav,99884,only has one phone and all calls
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_activate.wav,84524,can't activate
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_want_dispatch.wav,87404,i want dispatch
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_call_nine_one_one.wav,72044,can't call nine one one
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/parties_get_cut_off.wav,88844,parties get cut off
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_can_not_get_my_calls.wav,105644,i can not get my calls
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_phone_is_busy_when_dialed.wav,102764,my phone is busy when dialed
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_have_trouble_with_pic.wav,85964,i have trouble with pic
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/no_second_dial_tone.wav,88844,no second dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_pickup.wav,68204,call pickup
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/all_my_phones_with_all_calls.wav,94604,all my phones with all calls
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_have_a_commendation.wav,81644,i have a commendation
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_was_cut_off.wav,67244,call was cut off
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_needs_some_instructions_on_usage.wav,113804,customer needs some instructions on usage
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/second_dial_tone_is_not_heard.wav,102284,second dial tone is not heard
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/call_to_greeting.wav,61484,call to greeting
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/I_never_heard_the_second_dial_tone.wav,84524,i never heard the second dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_cable_got_cut.wav,72524,my cable got cut
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_want_to_move_it_from_inside_to_outside.wav,110124,i want to move it from inside to outside
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_would_like_to_remove_this_feature.wav,101324,i would like to remove this feature
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/long_distance.wav,56204,long distance
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i'm_hearing_noise_on_my_phone.wav,83084,i'm hearing noise on my phone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/cut_line_off.wav,61964,cut line off
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_am_unable_to_retrieve_messages.wav,121484,i am unable to retrieve messages
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/can't_collect_call.wav,76364,can't collect call
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/limb_on_line.wav,73004,limb on line
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/i_am_hearing_roaring_on_my_line.wav,112844,i am hearing roaring on my line
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/the_second_dial_tone_is_not_heard.wav,94604,the second dial tone is not heard
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/my_remote_call_forward_has_quit_working.wav,104204,my remote call forward has quit working
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_wants_to_move_nid_from_outside_to_inside.wav,131564,customer wants to move nid from outside to inside
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/no_dial_tone.wav,90764,no dial tone
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_requests_a_dispatch.wav,94604,customer requests a dispatch
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/other_noise.wav,64364,other noise
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/no_recording_on_line.wav,93644,no recording on line
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/customer_requests_dispatch.wav,96044,customer requests dispatch
+/Users/lihu/Documents/Projects/DeepSpeech/DS/data/ntelagent/do_not_hear_second_dial_tone.wav,87404,do not hear second dial tone

@@ -63,7 +63,8 @@ class VersionAction(argparse.Action):
 
 def init_ds():
     base = '/Users/lihu/Documents/Projects/DeepSpeech/'
-    model = base + 'models/output_graph.pbmm'
+    #model = base + 'models/output_graph.pbmm'
+    model = base + 'ntelagent2/output_graph.pb'
     alphabet=base + 'models/alphabet.txt'
     lm=base +'models/lm.binary'
     trie=base + 'models/trie'

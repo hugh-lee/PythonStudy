@@ -20,7 +20,7 @@ def generate_csv_file(path):
 
             print('Reading file: {}'.format(file), file=sys.stdout)
 
-            file_name = file_infos[0].replace('_', ' ')
+            file_name = file_infos[0].replace('_', ' ').replace('.', ' ').lower()
             file_path = path + "/" + file
             file_size = os.path.getsize(file_path)
             writer.writerows([[file_path, file_size, file_name]])
@@ -33,6 +33,7 @@ def main():
 
     print('Reading audio files from {}'.format(args.path), file=sys.stderr)
     generate_csv_file(args.path)
+
 
 if __name__ == '__main__':
     main()
